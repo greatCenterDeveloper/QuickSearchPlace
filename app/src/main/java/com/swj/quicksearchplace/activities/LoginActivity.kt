@@ -19,7 +19,6 @@ import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.swj.quicksearchplace.G
-import com.swj.quicksearchplace.R
 import com.swj.quicksearchplace.databinding.ActivityLoginBinding
 import com.swj.quicksearchplace.model.NidUserInfoResponse
 import com.swj.quicksearchplace.model.UserAccount
