@@ -1,10 +1,12 @@
 package com.swj.quicksearchplace.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.swj.quicksearchplace.activities.PlaceUrlActivity
 import com.swj.quicksearchplace.databinding.RecyclerItemListFragmentBinding
 import com.swj.quicksearchplace.model.Place
 
@@ -24,5 +26,11 @@ class PlaceListRecyclerAdapter(val context: Context, val documents:MutableList<P
         holder.binding.tvAddress.text =
             if(place.road_address_name == "") place.address_name
             else place.road_address_name
+
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(context, PlaceUrlActivity::class.java)
+            intent.putExtra("place_url",  place.place_url)
+            context.startActivity(intent)
+        }
     }
 }

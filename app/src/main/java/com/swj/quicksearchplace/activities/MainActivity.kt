@@ -107,6 +107,8 @@ class MainActivity : AppCompatActivity() {
             // 내 위치 요청
             requestMyLocation()
         }
+
+        binding.ivMyLocation.setOnClickListener { requestMyLocation() }
     } // onCreate method
 
     // 퍼미션 요청 대행사 계약 및 등록
