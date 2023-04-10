@@ -2,20 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- 인터넷 사용 권한 설정-->
+    <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 위치 정보 제공 퍼미션 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 실내에 있으면 GPS가 작동을 안하므로 네트워크로 내 위치 범위를 예측하는 퍼미션도 필요 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuickSearchPlace"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activities.PlaceUrlActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.EmailSigninActivity"
             android:exported="false" />
@@ -31,27 +40,31 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activities.MainActivity"
-            android:exported="false" />
-
-        <!--Kakao RedirectURI 액티비티 등록-->
+            android:exported="false" /> <!-- Kakao RedirectURI 액티비티 등록 -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="kakao8c0347aefb9bf9b817a363a979ad7382" />
             </intent-filter>
         </activity>
+
+        <!-- 카카오 지도 APP KEY 등록 [네이티브 앱키] -->
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="8c0347aefb9bf9b817a363a979ad7382"/>
     </application>
 
 </manifest>
