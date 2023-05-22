@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         // 소프트 키보드의 검색버튼 클릭하였을 때..
-        binding.etSearch.setOnEditorActionListener(OnEditorActionListener { p0, p1, p2 ->
+        binding.etSearch.setOnEditorActionListener { textView, i, keyEvent ->
             searchQuery = binding.etSearch.text.toString()
             // 카카오 검색API를 이용하여 장소들 검색하기
             searchPlace()
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             // true  : 부모 클래스에게 이 이벤트를 전달하지 않겠다.
             // false : 부모 클래스에게 이 이벤트를 전달하겠다.
             false
-        })
+        }
 
         // 특정 키워드 단축 검색 버튼들에 리스너 처리하는 함수 호출
         setChoiceButtonsListener()
@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity() {
                 response: Response<KakaoSearchPlaceResponse>
             ) {
                 searchPlaceResponse = response.body()
-                Toast.makeText(this@MainActivity, "${searchPlaceResponse?.meta?.total_count}", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MainActivity, "${searchPlaceResponse?.meta?.total_count}", Toast.LENGTH_SHORT).show()
                 supportFragmentManager.beginTransaction().replace(R.id.container_fragment, PlaceListFragment()).commit()
                 // 탭버튼의 위치를 ListFragment tab으로 변경
                 binding.tabLayout.getTabAt(0)?.select()
@@ -248,7 +248,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.menu_aa -> Toast.makeText(this, "검색 장소를 입력하세요.", Toast.LENGTH_SHORT).show()
-            R.id.menu_bb -> Toast.makeText(this, "Retrofit, Glide, KaKao API, Naver API, Google API, Gson", Toast.LENGTH_SHORT).show()
+            R.id.menu_bb -> Toast.makeText(this, "Retrofit, Glide, Kakao API, Naver API, Google API, GSON", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
